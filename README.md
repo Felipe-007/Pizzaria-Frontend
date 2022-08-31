@@ -1,34 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<p align="center">
+  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=E51C44&labelColor=0A1033">
 
-First, run the development server:
+ <img src="https://img.shields.io/static/v1?label=NLW&message=06&color=E51C44&labelColor=0A1033" alt="NLW 06" />
+</p>
 
-```bash
-npm run dev
-# or
+---
+![cover](.github/cover.png?style=flat)
+
+
+## 💻 Pizzaria - Frontend
+
+---
+### Desenvolvido em React com Next, Typescript e SASS.
+---
+
+## 🏁 Pré-requisitos <a name = "getting_started"></a>
+
+O que você precisa para instalar o software e como instalá-los.
+
+**NodeJS** <br>
+[NodeJS](https://nodejs.org/en/)
+
+**Um gerenciador de pacotes JavaScript como NPM ou Yarn** <br>
+[Node.js](https://nodejs.org/en/)
+[Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
+
+**Git instalado em sua máquina (Mac e Linux já tem Git instalado por padrão)** <br>
+[Baixe o Git para seu SO](https://git-scm.com/downloads)
+
+## 🚀 Instalação
+
+#### modo de desenvolvimento (executando localmente)
+
+```shell
+git clone https://github.com/Felipe-007/Pizzaria-Frontend.git
+cd Pizzaria-Frontend
+yarn
 yarn dev
+http://localhost:3000/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📄 Licença
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+<br />
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<div align="center">
+  <small>Agradecimentos ao professor Matheus Fraga</small>
+</div>

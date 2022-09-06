@@ -4,6 +4,7 @@ import styles from "../../styles/home.module.scss";
 import Image from "../../node_modules/next/image";
 import { Input } from "../components/ui/Input/index";
 import { Button } from "../components/ui/Button/index";
+import Link from "../../node_modules/next/link"; //faz a navegação entre as paginas
 
 export default function Home() {
   return (
@@ -36,7 +37,9 @@ export default function Home() {
             </Button>
           </form>
 
-          <a className={styles.text}>Cadastrar-se</a>
+          <Link href="/signup">
+            <a className={styles.text}>Cadastrar-se</a>
+          </Link>
         </div>
       </div>
     </>

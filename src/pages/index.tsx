@@ -2,7 +2,8 @@ import Head from "../../node_modules/next/head";
 import logoImg from "../../public/logo.svg";
 import styles from "../../styles/home.module.scss";
 import Image from "../../node_modules/next/image";
-import { Input } from "../components/ui/input/index";
+import { Input } from "../components/ui/Input/index";
+import { Button } from "../components/ui/Button/index";
 
 export default function Home() {
   return (
@@ -26,6 +27,13 @@ export default function Home() {
             placeholder="Senha"
             type="password"
           />
+
+          <Button
+            type="submit"
+            loading={false}
+          >
+            Acessar
+          </Button>
         </form>
       </div>
     </>

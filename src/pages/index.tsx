@@ -13,28 +13,31 @@ export default function Home() {
       </Head>
       <div className={styles.containerCenter}>
         <Image src={logoImg} alt="Logo Pizzaria" />
-      </div>
 
-      <div className={styles.login}>
-        <form>
-          <Input
-            placeholder="Digite seu email" // no container Index faz descrição ser diferente com o Input
-            type="text" // no container Index faz descrição ser diferente com o TextArea
-          />
-        </form>
-        <form>
-          <Input
-            placeholder="Senha"
-            type="password"
-          />
 
-          <Button
-            type="submit"
-            loading={false}
-          >
-            Acessar
-          </Button>
-        </form>
+        <div className={styles.login}>
+          <form>
+            <Input
+              placeholder="Digite seu email" // no container Index faz descrição ser diferente com o Input
+              type="text" // no container Index faz descrição ser diferente com o TextArea
+            />
+          </form>
+          <form>
+            <Input
+              placeholder="Senha"
+              type="password"
+            />
+
+            <Button
+              type="submit"
+              loading={false}
+            >
+              Acessar
+            </Button>
+          </form>
+
+          <a className={styles.text}>Cadastrar-se</a>
+        </div>
       </div>
     </>
   )

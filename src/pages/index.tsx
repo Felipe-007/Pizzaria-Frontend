@@ -6,17 +6,22 @@ import { Input } from "../components/ui/Input/index";
 import { Button } from "../components/ui/Button/index";
 import Link from "../../node_modules/next/link"; //faz a navegação entre as paginas
 import { AuthContext } from "../contexts/AuthContext";
-import { useContext, FormEvent } from "react";
+import { useContext, FormEvent, useState } from "react";
 
 export default function Home() {
   const { signIn } = useContext(AuthContext)
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
     let data = {
-      email: "algum@teste.com",
-      password: "123123"
+      email,
+      password
     }
 
     await signIn(data)
@@ -35,11 +40,15 @@ export default function Home() {
             <Input
               placeholder="Digite seu email" // no container Index faz descrição ser diferente com o Input
               type="text" // no container Index faz descrição ser diferente com o TextArea
+              value={email}
+              onChange = { (e) => setEmail(e.target.value) }
             />
 
             <Input
               placeholder="Sua senha"
               type="password"
+              value={password}
+              onChange = { (e) => setPassword(e.target.value) }
             />
 
             <Button

@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useContext } from "react";
 import Head from "../../../node_modules/next/head";
 import logoImg from "../../../public/logo.svg";
 import styles from "../../../styles/home.module.scss";
@@ -6,9 +6,11 @@ import Image from "../../../node_modules/next/image";
 import { Input } from "../../components/ui/Input/index";
 import { Button } from "../../components/ui/Button/index";
 import Link from "../../../node_modules/next/link";  //faz a navegação entre as paginas
-
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function SignUp() {
+  const { signUp } = useContext(AuthContext);
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,7 +26,14 @@ export default function SignUp() {
     }
 
     setLoading(true);
+    let data = {
+      name,
+      email,
+      password
+    }
+    await signUp(data)
 
+    setLoading(false)
   }
 
   return (

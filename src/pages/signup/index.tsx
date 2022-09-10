@@ -7,6 +7,7 @@ import { Input } from "../../components/ui/Input/index";
 import { Button } from "../../components/ui/Button/index";
 import Link from "../../../node_modules/next/link";  //faz a navegação entre as paginas
 import { AuthContext } from "../../contexts/AuthContext";
+import { toast } from 'react-toastify';
 
 export default function SignUp() {
   const { signUp } = useContext(AuthContext);
@@ -21,7 +22,7 @@ export default function SignUp() {
     event.preventDefault();
 
     if(name === '' || email === '' || password === ''){
-      alert("PREENCHA TODOS OS CAMPOS")
+      toast.error("Preencha todos os campos")
       return;
     }
 

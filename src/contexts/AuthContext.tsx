@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';  //Personalizando alertas
 import { api } from '../services/apiClient';
 
@@ -51,6 +51,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserProps>()
   const isAuthenticated = !!user;
 
+  useEffect(() => {
+    //tentar pegar algo no cookie
+    const { '@nextauth.token': token } = parseCookies();
+
+    if (token) {
+      api.get('/me').then(response => {
+        const { id, name, email } = response.data;
+
+        setUser({
+          id,
+          name,
+          email
+        })
+      })
+        .catch(() => {
+          //Se deu erro deslogamos o user
+          signOut();
+        })
+    }
+  }, [])
+
   async function signIn({ email, password }: SignInProps) {
     try {
       const response = await api.post('/session', {
@@ -82,23 +103,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
 
     } catch (err) {
-      toast.error("Erro ao acessar")     
-      console.log("Erro ao acessar", err) 
+      toast.error("Erro ao acessar")
+      console.log("Erro ao acessar", err)
     }
   }
 
-  async function signUp({name, email, password}: SignUpProps){
-    try{
+  async function signUp({ name, email, password }: SignUpProps) {
+    try {
       const response = await api.post('/users', {
         name,
         email,
         password
       })
-      toast.success("Conta criada com sucesso")  
-      
+      toast.success("Conta criada com sucesso")
+
       Router.push('/')
-    }catch(err){
-      toast.error("Erro ao cadastrar")  
+    } catch (err) {
+      toast.error("Erro ao cadastrar")
       console.log("Erro ao cadastrar", err)
     }
   }

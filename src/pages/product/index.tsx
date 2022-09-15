@@ -4,11 +4,25 @@ import { canSSRAuth } from '../../utils/canSSRAuth';
 import { Header } from '../../components/Header';
 import { FiUpload } from 'react-icons/fi';
 import { useState, ChangeEvent } from 'react';
+import { setupAPIClient } from '../../services/api';
 
-export default function Product() {
+
+type ItemProps = {
+  id: string;
+  name: string;
+}
+
+type CategoryProps = {
+  categoryList: ItemProps[];
+}
+
+export default function Product({ categoryList }: CategoryProps) {
 
   const [avatarUrl, setAvatarUrl] = useState('');
   const [imageAvatar, setImageAvatar] = useState(null);
+
+  const [categories, setCategories] = useState(categoryList || [])
+  const [categorySelected, setCategorySelected] = useState(0)
 
   function handleFile(e: ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) {
@@ -21,6 +35,13 @@ export default function Product() {
       setImageAvatar(image);
       setAvatarUrl(URL.createObjectURL(e.target.files[0]))
     }
+  }
+
+  //Quando vc seleciona uma nova categoria na lista
+  function handleChangeCategory(event){
+    //console.log("Posição da categoria selecionada", event.target.value)
+    //console.log("Categoria selecionada", categories[event.target.value])
+    setCategorySelected(event.target.value)
   }
 
   return (
@@ -55,9 +76,14 @@ export default function Product() {
 
             </label>
 
-            <select>
-              <option>Bebida</option>
-              <option>Pizza</option>
+            <select value={categorySelected} onChange={handleChangeCategory}>
+              {categories.map((item, index) => {
+                return (
+                  <option key={item.id} value={index}>
+                    {item.name}
+                  </option>
+                )
+              })}
             </select>
 
             <input
@@ -89,7 +115,14 @@ export default function Product() {
 
 //somente usuários logados poderão acessar
 export const getServerSideProps = canSSRAuth(async (ctx) => {
+  const apiClient = setupAPIClient(ctx)
+
+  const response = await apiClient.get('/category');
+  //console.log(response.data)
+
   return {
-    props: {}
+    props: {
+      categoryList: response.data
+    }
   }
 })

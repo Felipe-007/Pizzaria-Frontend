@@ -4,6 +4,7 @@ import { Header } from '../../components/Header';  //importa o Header
 import { useState, FormEvent } from 'react';
 import { setupAPIClient } from '../../services/api';
 import { toast } from 'react-toastify';
+import { canSSRAuth } from '../../utils/canSSRAuth';  //somente usuários logados poderão acessar
 
 export default function Category() {
   const [name, setName] = useState('')
@@ -53,3 +54,10 @@ export default function Category() {
     </>
   )
 }
+
+//somente usuários logados poderão acessar
+export const getServerSideProps = canSSRAuth(async(ctx) => {
+  return{
+    props: {}
+  }
+})

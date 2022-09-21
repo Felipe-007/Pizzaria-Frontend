@@ -63,6 +63,8 @@ export default function Dashboard({ orders }: HomeProps) {
     setModalItem(response.data);
     setModalVisible(true);
   }
+
+  Modal.setAppElement('#__next');
  
   return (
     <>
@@ -84,7 +86,7 @@ export default function Dashboard({ orders }: HomeProps) {
           <article className={styles.listOreders}>
 
             {orderList.map( item => (
-              <section className={styles.orderItem}>
+              <section  key={item.id} className={styles.orderItem}> 
                 <button onClick={ () => handleOpenModalView(item.id) }>
                   <div className={styles.tag}></div>
                   <span>Mesa {item.table}</span>
@@ -95,7 +97,11 @@ export default function Dashboard({ orders }: HomeProps) {
         </main>
 
         { modalVisible && (
-          <ModalOrder />
+          <ModalOrder
+            isOpen={modalVisible}
+            onRequestClose={handleCloseModal}
+            order={modalItem}
+          />
         ) }
       </div>
     </>
